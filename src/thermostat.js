@@ -6,6 +6,11 @@ function Thermostat() {
   };
 
   Thermostat.prototype.up = function() {
-     this.temperature++
+     this.temperature +=1;
      console.log(this.temperature)
+ }
+
+ Thermostat.prototype.down = function() {
+   this.temperature -=1;
+   console.log(this.temperature)
  }
