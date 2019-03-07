@@ -1,7 +1,6 @@
-
 'use strict';
 
- describe('Thermostat', function() {
+describe('Thermostat', function() {
     var thermostat;
     var i;
     it('starts at 20 degrees', function(){
@@ -9,13 +8,13 @@
         expect(thermostat.temperature).toEqual(20);
     });
 
-    it('it can increase the temerature with an up function', function(){
+    it('can increase the temerature with an up function', function(){
         thermostat = new Thermostat()
         thermostat.up()
         expect(thermostat.temperature).toEqual(21);
     });
 
-    it('it can decrease the temerature with a down function', function(){
+    it('can decrease the temerature with a down function', function(){
         thermostat = new Thermostat()
         thermostat.down()
         expect(thermostat.temperature).toEqual(19);
@@ -38,11 +37,27 @@
         expect(thermostat.temperature).toEqual(25);
     });
 
+    it('can not increase the temperature above 32 if power saving mode is off', function(){
+        thermostat = new Thermostat()
+        thermostat.powersave('off')
+        for (i = 0; i<=15; i++) {
+            thermostat.up()
+        }
+        expect(thermostat.temperature).toEqual(32);
+    });
+
+    it('can reset the temperature to 20 with a reset function', function(){
+        thermostat = new Thermostat()
+            thermostat.up()
+            thermostat.reset()
+        expect(thermostat.temperature).toEqual(20);
+    });
 
 
-
-
-
+    it('has power save mode on by default', function(){
+        thermostat = new Thermostat()
+        expect(thermostat.powersavemode).toEqual(true);
+    });
 
 
 });
